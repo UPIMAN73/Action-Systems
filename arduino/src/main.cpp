@@ -52,9 +52,9 @@ void setup()
     
     // Test Action Added to the Action Handler
     ah->addAction(new TestAction("John", 1));
-    // ah->addAction(new TestAction("Doe", 2));
-    // ah->addAction(new TestAction("Sam", 3)); 
-    // ah->addAction(new TestAction("Smith", 4));
+    // ah.addAction(new TestAction("Doe", 2));
+    // ah.addAction(new TestAction("Sam", 3)); 
+    // ah.addAction(new TestAction("Smith", 4));
 
     // Starting the action handler
     println("Action Handler Start...");

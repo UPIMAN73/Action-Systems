@@ -6,6 +6,11 @@ ActionHandler::ActionHandler()
     if (!m_init)
     {
         m_init = true;
+        *actions = new Action[NUM_OF_ACTIONS];
+        for (int i = 0; i < NUM_OF_ACTIONS; i++)
+        {
+            actions[i] = new Action();
+        }
     }
 }
 
@@ -14,7 +19,7 @@ uint8_t ActionHandler::getActiveActions()
 {
     int i = 0;
 
-    for (; i < NUM_OF_ACTIONS && i < actions.size(); i++)
+    for (; i < NUM_OF_ACTIONS; i++)
     {   
         // if a null action shows up then break loop
         if ((actions[i]->getName() == "") && (actions[i]->getId() == 0))
@@ -39,8 +44,7 @@ void ActionHandler::addAction(Action * a)
     // if the action list is too much then do not add the action.
     if (id == 0 || id < NUM_OF_ACTIONS)
     {
-        printf("HERE\n");
-        actions.push_back(a);
+        actions[id] = a;
     }
 
     // Add Action
@@ -92,7 +96,7 @@ void ActionHandler::check()
     STATE cur_state = IDLE;
 
     // Enter the action check and state function loop
-    for (int i = 0; i < actions.size(); i++)
+    for (int i = 0; i < getActiveActions(); i++)
     {
         cur_state = actions[i]->getState(); // Get current status of the action
         switch(cur_state)
@@ -121,13 +125,9 @@ void ActionHandler::check()
 void ActionHandler::clean()
 {
     // Clear all of the actions
-    for (int i = 0; i < NUM_OF_ACTIONS && i < actions.size(); i++)
+    for (int i = 0; i < NUM_OF_ACTIONS; i++)
     {
-        actions[i]->setName("");
-        actions[i]->setID(0);
-        //actions[i]->setState(STATE::IDLE);
+        delete actions[i];
     }
-
-    actions.clear();
     m_init = false;
 }
