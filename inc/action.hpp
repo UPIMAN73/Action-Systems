@@ -12,11 +12,11 @@
 #define ACTION_HPP_
 
 // Defined Maximums
-#define MAX_char *_SIZE 32
+#define MAX_STRING_SIZE 32
 
 /**
  * @brief 
- * 
+ * Action States
  */
 typedef enum state_t {
     NULL = 0,

@@ -25,7 +25,8 @@ Action::Action(const char * Name) {
  * 
  */
 Action::~Action() {
-    name = "";
+    clearName();
+    delete name;
     state = NULL;
 }
 
