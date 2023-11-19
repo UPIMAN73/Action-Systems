@@ -1,4 +1,14 @@
-#include "../inc/action.hpp"
+/**
+ * @file action.cpp
+ * @author Joshua Calzadillas (jcalzadillas.job@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2023-11-19
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+#include "action.hpp"
 
 /**
  * @brief Construct a new Action:: Action object
@@ -6,7 +16,7 @@
  */
 Action::Action() {
     name = new char[MAX_STRING_SIZE];
-    state = NULL;
+    state = _NULL;
 }
 
 /**
@@ -17,7 +27,7 @@ Action::Action() {
 Action::Action(const char * Name) {
     name = new char[MAX_STRING_SIZE];
     setName(Name);
-    state = NULL;
+    state = _NULL;
 }
 
 /**
@@ -27,7 +37,7 @@ Action::Action(const char * Name) {
 Action::~Action() {
     clearName();
     delete name;
-    state = NULL;
+    state = _NULL;
 }
 
 /////////////
@@ -104,4 +114,33 @@ void Action::clearName() {
 
     // Garbage collection
     index = 0;
+}
+
+// Protected
+void Action::setState(State S) {
+    switch (S)
+    {
+        _NULL:
+            state = _NULL;
+            break;
+        
+        INIT:
+            state = INIT;
+            break;
+        
+        IDLE:
+            state = IDLE;
+            break;
+        
+        FIN:
+            state = FIN;
+            break;
+        
+        ERR:
+            state = ERR;
+            break;
+
+        default:
+            break;
+    }
 }
